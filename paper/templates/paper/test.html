@@ -1,0 +1,46 @@
+{% extends 'paper/main.html' %}
+{% load static %}
+
+{% block activeClassroom %}active{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/test.css' %}" />
+<div class="container">
+    <div class="left-container">
+        <div class="topic detail">{{details.topic}}</div>
+        <div class="detail">Max. Marks: {{details.mm}}</div>
+        <div class="detail">
+            Marking Scheme:
+            <div class="mk-scheme">Correct: {{details.correct}}</div>
+            <div class="mk-scheme">Wrong: {{details.wrong}}</div>
+        </div>
+    </div>
+    
+
+
+    <div class="right-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for i in questions %}
+            <div id="question-{{forloop.counter}}" class="question-container">
+                <label for="" class="question"><span class="q-no">Q-{{forloop.counter}}</span> {{i.question}}</label>
+                <div id="options" class="option-container">
+                    <input type="radio" name="qID-{{i.qid}}" id="qID-{{i.qid}}-A" value="A">
+                    <label for="qID-{{i.qid}}-A" class="option"><span class="option-name">A</span>{{i.options.A}}</label>
+
+                    <input type="radio" name="qID-{{i.qid}}" id="qID-{{i.qid}}-B" value="B">
+                    <label for="qID-{{i.qid}}-B" class="option"><span class="option-name">B</span>{{i.options.B}}</label>
+
+                    <input type="radio" name="qID-{{i.qid}}" id="qID-{{i.qid}}-C" value="C">
+                    <label for="qID-{{i.qid}}-C" class="option"><span class="option-name">C</span>{{i.options.C}}</label>
+
+                    <input type="radio" name="qID-{{i.qid}}" id="qID-{{i.qid}}-D" value="D">
+                    <label for="qID-{{i.qid}}-D" class="option"><span class="option-name">D</span>{{i.options.D}}</label>
+                </div>
+            </div>
+            {% endfor %}
+            <input class="submit-btn {{submitBtnClass}}" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}

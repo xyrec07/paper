@@ -1,0 +1,39 @@
+{
+    "correct":4,
+    "wrong":-1,
+    "questions": [
+        {
+            "qid":1,
+            "question": "One joule of work is said to be done when__:",
+            "options": {
+                "A":"a force of 1 dyne causes a displacement of 1 cm.",
+                "B":"a force of 1 dyne causes a displacement of 1 m.",
+                "C":"a force of 1 N causes a displacement of 1 cm.",
+                "D":"a force of 1 N causes a displacement of 1 m."
+            },
+            "answer": "D"
+        },
+        {
+            "qid":2,
+            "question": "On heating a pure silicon circular disc with a circular hole at the centre, the diameter of the hole:",
+            "options": {
+                "A":"will expand",
+                "B":"will contract",
+                "C":"will remain constant",
+                "D":"may expand or contract"
+            },
+            "answer": "B"
+        },
+        {
+            "qid":3,
+            "question": "By how many times are the Electrostatic forces stronger than the Gravitational Forces for a fixed distance?",
+            "options": {
+                "A":"10^2",
+                "B":"10^12",
+                "C":"10^36",
+                "D":"10^5"
+            },
+            "answer": "C"
+        }
+    ]
+}

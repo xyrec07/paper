@@ -1,0 +1,203 @@
+body{
+    overflow: hidden;
+}
+
+.container{
+    width: 100%;
+    min-height: calc(100vh - 4.7rem);
+    display: flex;
+    flex-direction: row;
+}
+.left-container{
+    width: 25%;
+    background-color:#d3d3cb;
+    position: relative;
+    max-height: calc(100vh - 4.7rem);
+    .no-class{
+        position: absolute;
+        width: 100%;
+        top: calc(50% - 2rem);
+        font-size: 2rem;
+        color: #1f1f1f;
+        text-align: center;
+    }
+
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-height: calc(100% - 4rem);
+        overflow: auto;
+        a{
+            text-decoration: none;
+            color: #1f1f1f;
+            padding: 0;
+        }
+        .active-class, li:hover{
+            background-color: #b3b3aa; 
+        }
+        li{
+            padding: 2rem 1rem;
+            border-bottom: 0.1rem solid #a0a0a0; 
+        }        
+    }
+    .join-class{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        fieldset {
+            font-size: 2rem;
+            border: none;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            input{
+                max-width: calc(100% - 7.5ch);
+                text-align: center;
+                letter-spacing: 1ch;
+            }
+            input:placeholder-shown {
+                 letter-spacing: 1px;
+                 font-weight: normal;
+            }
+            button{
+                width: 7ch;
+            }
+        } 
+        input, button {
+            font-size: inherit;
+            padding: 1rem;
+            margin: 0;
+            border: none;
+            box-sizing: border-box;
+        }
+    }
+}
+
+.right-container{
+    padding: 1rem;
+    width: 75%;
+    max-height: calc(100vh - 4.7rem);
+    overflow: auto;
+    position: relative;
+    .right-header{
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: row;
+        span{
+            font-size: 4rem;
+        }
+        .dropdown {
+            overflow: hidden;
+            position: absolute;
+            right: 2rem;
+            z-index: 2;
+        }
+        .btn-container{
+            width: 100%;
+            position: relative;
+        }
+        .dropdown .dropbtn {
+            font-size: 30px; 
+            font-weight: bolder;
+            border: none;
+            outline: none;
+            background-color: inherit;
+            margin: 0;
+        }
+        .dropdown-content {
+            display: none;
+            background-color: #d3d3cb;
+            min-width: 160px;
+            border-radius: 1rem;
+            border: solid 2px #585858;
+            z-index: 1;
+            overflow: hidden;
+            a{
+                display: block;
+                text-decoration: none;
+                color: black;
+                padding: 1rem 1rem 1rem 1rem;
+            }
+            .red{
+                color: red;
+                border-top: solid 1px #a5a59d;
+                padding: 1rem 0 1rem 1rem;
+            }
+            a:hover{
+                background-color: #a5a59d;
+            }
+        }
+        .show-block{
+            display: block;
+        }
+        .float-right{
+            float: right;
+        }
+    }
+
+    #members-btn{
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: absolute;
+        right: 16rem;
+        padding: 0.7rem;
+        background-color: rgb(0, 89, 255);
+        border: none;
+        border-radius: 5px;
+        a{
+            color: white;
+            text-decoration: none;
+        }
+    }
+    #members-btn:hover{
+        background-color: rgb(0, 71, 204);
+    }
+    
+    .leave-btn{
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: absolute;
+        right: 1rem;
+        padding: 0.7rem;
+        color: white;
+        background-color: red;
+        border: none;
+        border-radius: 5px;
+    }
+    .leave-btn:hover{
+        background-color: rgb(202, 0, 0);
+    }
+    
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        a{
+            text-decoration: none;
+            color: #1f1f1f;
+            padding: 0;
+        }
+        .active-class, li:hover{
+            background-color: #b3b3aa; 
+        }
+        li{
+            padding: 2rem 1rem;
+            border-bottom: 0.1rem solid #a0a0a0; 
+            background-color: #d3d3cb;
+            span{
+                position: absolute;
+                right: 2rem;
+            }
+        }
+        .green{
+            background-color: green;
+        }
+    }
+}
+
+#hide{
+    display: none;
+}

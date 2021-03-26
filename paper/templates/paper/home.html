@@ -1,0 +1,70 @@
+{% extends 'paper/main.html' %}
+{% load static %}
+
+{% block title %}Paper{% endblock %}
+{% block activeHome %}active{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/home.css' %}" />
+
+{% if userAuthenticated %}
+<div class="home-container-logged">
+    Hello <span>{{request.user.first_name}} {{request.user.last_name}}</span>
+
+    <p>(Please remember your user id as it is required for login.)</p>
+    <input class="input uid" type="text" value="{{request.user}}" readonly>
+    <br><br>
+    <a class="button" href="/classroom">Classroom</a>
+</div>
+{% elif request.path == '/signup/' %}
+<div class="home-container">
+    <div class="form-container sign-up-container">
+        <form method="post">
+            {% csrf_token %}
+            <h1>Sign Up</h1>
+
+            {{form.first_name.label}}
+            {{form.first_name}}
+            
+            {{form.last_name.label}}
+            {{form.last_name}}
+        
+            {{form.password1.label}}
+            {{form.password1}}
+        
+            {{form.password2.label}}
+            {{form.password2}}
+        
+            <label for="userType">What are you:</label>
+            <select id="userType" name="userType" required>
+                <option value="T">Teacher</option>
+                <option value="S">Student</option>
+            </select>
+            <br>
+    
+            <span>{{form.errors}}</span>
+            <button class="button" type="submit" name="action" value="sign up">Sign Up</button>
+            <p>Already a user, <a href="/">Log In</a>.</p>
+        </form>
+    </div>
+    <div class="form-logo"><a class="logo" href="/">Paper</a></div>
+</div>
+{% else %}
+<div class="home-container">
+    <div class="form-container log-in-container">
+        <form method="post">
+            {% csrf_token %}
+            <h1>Log In</h1>
+
+            <input class="user-id" id="userId" type="text" name="userId" pattern="\d{6}" maxlength="6" size="6" 
+            placeholder="User Id" spellcheck="false" required />
+            
+            <input id="password" type="password" name="password" spellcheck="false" placeholder="Password" required />
+            <button class="button" type="submit" name="action" value="log in">Log In</button>
+            <span>{{error}}</span>
+            <p>Not a user, <a href="/signup">Sign Up</a></p>
+        </form>
+    </div>
+    <div class="form-logo"><a class="logo" href="/">Paper</a></div>
+</div>
+{% endif %}
+{% endblock %}

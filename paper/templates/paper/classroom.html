@@ -1,0 +1,49 @@
+{% extends 'paper/main.html' %}
+{% load static %}
+{% block activeClassroom %}active{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/classroom.css' %}" />
+
+<div class="class-header">
+    <span class="class-name">{{classroom.class_name}}</span class="class-name">
+    <span class="class-code">(Class-code: {{classroom.class_code}})</span class="class-code">
+</div>
+
+<div class="container">
+    <div class="left-container">
+        <h1>Teachers</h1>
+        <ul>
+            {% for i in classroom.teachers.all %}
+            <li>{{i}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="right-container">
+        <h1>Students</h1>
+        <form id="members-form" action="" method="post">
+            {% csrf_token %}
+            <div class="student-list">
+                <ul id="student-list">
+                    {% for j in classroom.students.all %}
+                    <li>{{j}} 
+                        {% if teacher %}
+                        <input id="rm-btn" class="fa-times" type="submit" name="student-{{j.id}}" value="&#xf00d">
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <script>
+    if (window.location.href.indexOf("student") != -1){
+        let studentList = document.getElementById("rm-btn")
+        studentList.style.display = "none";
+        document.getElementById("members-form").setAttribute("onsubmit", "return false;");
+        console.log('student');
+    }
+</script> -->
+{% endblock %}
+

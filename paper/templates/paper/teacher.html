@@ -1,0 +1,91 @@
+{% extends 'paper/main.html' %}
+{% load static %}
+
+{% block activeClassroom %}active{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/teacher.css' %}" />
+<div class="container">
+    <div class="left-container">
+        <div class="no-class">{{noClass}}</div>
+        <ul id="class-list">
+            {% for j in teacher.classes.all %}
+                {% if j.id == currentClass.id %}
+                    <a href="/classroom/{{j.id}}"><li class="active-class">{{j.class_name}} ({{j.class_code}})</li></a>
+                {% else %}
+                    <a href="/classroom/{{j.id}}"><li>{{j.class_name}} ({{j.class_code}})</li></a>
+                {% endif %}
+            {% endfor %}     
+        </ul>
+        <form class="join-class" action="" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <input type="text" name="classCode" maxlength="5" spellcheck="false" class="code-input input" placeholder="Class Code" onkeyup="var start = this.selectionStart; var end = this.selectionEnd; this.value = this.value.toUpperCase(); this.setSelectionRange(start, end);">
+                <button class="code-submit" type="submit">Join</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="right-container">
+        <div id="right-header" class="right-header">
+            <span>Tests</span>
+            <div class="dropdown">
+                <div class="btn-container">
+                    <button id="dropbtn" class="dropbtn" onclick="toggleMenu()"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                </div>
+                <div id="dropdown-content" class="dropdown-content">
+                    <a onclick="createClass();">New Class</a>
+                    <a class="member" href="/classroom/{{currentClass.id}}/members">Members</a>
+                    <a class="red" href="/classroom/{{currentClass.id}}/leave">Leave Classroom</a>
+                </div>
+            </div> 
+        </div>
+        <ul id="test-list" class="test-list">
+            <button id="create-test-btn"><a href="/classroom/{{currentClass.id}}/create">Create Test</a></button>
+            {% for i in tests|dictsortreversed:"date_created" %}
+                <li class="test-item">
+                    <a href="/classroom/test/{{i.id}}/view">{{i.topic}}<span>{{i.date_created}}</span></a>
+                    <div class="test-btns">
+                        <button class="response-btn"><a href="/classroom/{{currentClass.id}}/response/{{i.id}}">Response</a></button>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div id="create-class-container" class="create-class-container">
+            <div>Create class.</div>
+            <form id="class-form" action="" method="post">
+                {% csrf_token %}
+                <input type="text" name="className" class="class-input input" placeholder="Class Name">
+                <br>
+                <button type="submit" class="button">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    let x = document.getElementById("class-list").childElementCount;
+    let createClassContainer = document.getElementById("create-class-container");
+    if(x == 0) {
+        document.getElementById("right-header").className = "hide";
+        document.getElementById("create-test-btn").className = "hide";
+    } else {
+        createClassContainer.classList.add("hide");
+    }
+
+    let createClass = () => {
+        document.getElementById("right-header").className = "hide";
+        document.getElementById("test-list").className = "hide";
+        document.getElementById("create-class-container").classList.toggle("hide");
+    }
+
+
+    let toggleMenu = () => {
+        let element = document.getElementById("dropdown-content");
+        element.classList.toggle("show-block");
+        let dropbtn = document.getElementById("dropbtn");
+        dropbtn.classList.toggle("float-right");
+    }
+</script>
+{% endblock %}
+
+
+

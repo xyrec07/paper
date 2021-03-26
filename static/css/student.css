@@ -1,0 +1,246 @@
+body {
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  min-height: calc(100vh - 4.7rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.left-container {
+  width: 25%;
+  background-color: #d3d3cb;
+  position: relative;
+  max-height: calc(100vh - 4.7rem);
+}
+
+.left-container .no-class {
+  position: absolute;
+  width: 100%;
+  top: calc(50% - 2rem);
+  font-size: 2rem;
+  color: #1f1f1f;
+  text-align: center;
+}
+
+.left-container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: calc(100% - 4rem);
+  overflow: auto;
+}
+
+.left-container ul a {
+  text-decoration: none;
+  color: #1f1f1f;
+  padding: 0;
+}
+
+.left-container ul .active-class, .left-container ul li:hover {
+  background-color: #b3b3aa;
+}
+
+.left-container ul li {
+  padding: 2rem 1rem;
+  border-bottom: 0.1rem solid #a0a0a0;
+}
+
+.left-container .join-class {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.left-container .join-class fieldset {
+  font-size: 2rem;
+  border: none;
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.left-container .join-class fieldset input {
+  max-width: calc(100% - 7.5ch);
+  text-align: center;
+  letter-spacing: 1ch;
+}
+
+.left-container .join-class fieldset input:placeholder-shown {
+  letter-spacing: 1px;
+  font-weight: normal;
+}
+
+.left-container .join-class fieldset button {
+  width: 7ch;
+}
+
+.left-container .join-class input, .left-container .join-class button {
+  font-size: inherit;
+  padding: 1rem;
+  margin: 0;
+  border: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.right-container {
+  padding: 1rem;
+  width: 75%;
+  max-height: calc(100vh - 4.7rem);
+  overflow: auto;
+  position: relative;
+}
+
+.right-container .right-header {
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.right-container .right-header span {
+  font-size: 4rem;
+}
+
+.right-container .right-header .dropdown {
+  overflow: hidden;
+  position: absolute;
+  right: 2rem;
+  z-index: 2;
+}
+
+.right-container .right-header .btn-container {
+  width: 100%;
+  position: relative;
+}
+
+.right-container .right-header .dropdown .dropbtn {
+  font-size: 30px;
+  font-weight: bolder;
+  border: none;
+  outline: none;
+  background-color: inherit;
+  margin: 0;
+}
+
+.right-container .right-header .dropdown-content {
+  display: none;
+  background-color: #d3d3cb;
+  min-width: 160px;
+  border-radius: 1rem;
+  border: solid 2px #585858;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.right-container .right-header .dropdown-content a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.right-container .right-header .dropdown-content .red {
+  color: red;
+  border-top: solid 1px #a5a59d;
+  padding: 1rem 0 1rem 1rem;
+}
+
+.right-container .right-header .dropdown-content a:hover {
+  background-color: #a5a59d;
+}
+
+.right-container .right-header .show-block {
+  display: block;
+}
+
+.right-container .right-header .float-right {
+  float: right;
+}
+
+.right-container #members-btn {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  right: 16rem;
+  padding: 0.7rem;
+  background-color: #0059ff;
+  border: none;
+  border-radius: 5px;
+}
+
+.right-container #members-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+.right-container #members-btn:hover {
+  background-color: #0047cc;
+}
+
+.right-container .leave-btn {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  right: 1rem;
+  padding: 0.7rem;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+}
+
+.right-container .leave-btn:hover {
+  background-color: #ca0000;
+}
+
+.right-container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.right-container ul a {
+  text-decoration: none;
+  color: #1f1f1f;
+  padding: 0;
+}
+
+.right-container ul .active-class, .right-container ul li:hover {
+  background-color: #b3b3aa;
+}
+
+.right-container ul li {
+  padding: 2rem 1rem;
+  border-bottom: 0.1rem solid #a0a0a0;
+  background-color: #d3d3cb;
+}
+
+.right-container ul li span {
+  position: absolute;
+  right: 2rem;
+}
+
+.right-container ul .green {
+  background-color: green;
+}
+
+#hide {
+  display: none;
+}
+/*# sourceMappingURL=student.css.map */

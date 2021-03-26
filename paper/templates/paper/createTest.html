@@ -1,0 +1,278 @@
+{% extends 'paper/main.html' %}
+{% load static %}
+
+{% block activeClassroom %}active{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/createTest.css' %}" />
+<form action="" method="post" id="form" class="test-container">
+    <h1>Create Test</h1>
+    {% csrf_token %}
+    <input id="topic" type="text" name="topic" maxlength="30" size="30" placeholder="Topic" required>
+    <br><br>
+    <label for="">Select classes-</label>
+    <br>
+    {% for i in teacher.classes.all %}
+    <input type="checkbox" id="class-{{forloop.counter}}" name="classes" value="{{i.id}}">
+    <label for="class-{{forloop.counter}}">{{i}}</label>
+    <br>
+    {% endfor %}
+    <br><br>
+    <label for="correct">Marks for correct answer</label>
+    <input type="number" name="correct" min="-99" max="99" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="4" required>
+    <br>
+    <label for="wrong">Marks for incorrect answer</label>
+    <input type="number" name="wrong" min="-99" max="99" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="-1" required>
+    <br>
+    <div id="questions">
+    </div>
+    <br>
+    <button class="add-que-btn" onclick="addQuestion(); return false;">Add Question</button>
+    <br>
+    <input class="submit-btn" class="" type="submit" value="Submit">
+</form>
+
+<script>
+    let auto_grow = (element) => {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+    }
+
+    var qNum;
+    let createQuestion = () => {
+        let questions = document.getElementById("questions");
+        qNum = 0;
+        addQuestion();
+    };
+    let addQuestion = () => {
+        qNum ++;
+        let questions = document.getElementById("questions");
+
+        let questionWrapper = document.createElement("div");
+        questionWrapper.id= "question-wrapper-" + qNum;
+        questionWrapper.classList.add("question-container");
+
+        questions.appendChild(questionWrapper);
+
+        //Adding remove button
+
+        let removeBtn = document.createElement("button");
+        removeBtn.innerHTML = "Remove";
+        removeBtn.id = "rmvBtn" + qNum;
+        removeBtn.setAttribute("onclick","removeQuestion(this); return false;");
+        removeBtn.classList.add("rmv-que-btn");
+        questionWrapper.appendChild(removeBtn);
+
+        // let removeBtn = document.createElement("input");
+        // removeBtn.id = "rmvBtn" + qNum;
+        // removeBtn.setAttribute("type", "submit");
+        // removeBtn.setAttribute("onclick","removeQuestion(this); return false;");
+        // removeBtn.setAttribute("value", "");
+        // removeBtn.classList.add("fa-minus");
+        // questionWrapper.appendChild(removeBtn);
+
+        //Question input and label
+
+        let queLabel = document.createElement("label");
+        queLabel.setAttribute("for", "question-" + qNum);
+        queLabel.id = "label-question-" + qNum;
+        queLabel.innerHTML = "Question " + qNum;
+        queLabel.id = "label-question-" + qNum;
+
+        let que = document.createElement("textarea");
+        que.setAttribute("name", "question-" + qNum); 
+        que.setAttribute("placeholder", "Question " + qNum);
+        // que.setAttribute("cols", "40");
+        // que.setAttribute("wrap", "hard");
+        que.setAttribute("oninput","auto_grow(this)");
+        que.id = "question-" + qNum;
+
+        //Option inputs and labels
+
+        let option1Label = document.createElement('label');
+        option1Label.setAttribute("for", "option1-" + qNum);
+        option1Label.innerHTML = "Option A";
+        option1Label.id = "label-option1-" + qNum;
+
+        let option1 = document.createElement("textarea");
+        option1.setAttribute("name", qNum + "-A"); 
+        option1.setAttribute("placeholder", "Option 1");
+        option1.setAttribute("oninput","auto_grow(this)");
+        option1.id = "option1-" + qNum;
+
+        let option2Label = document.createElement('label');
+        option2Label.setAttribute("for", "option2-" + qNum);
+        option2Label.innerHTML = "Option B";
+        option2Label.id = "label-option2-" + qNum;
+
+        let option2 = document.createElement("textarea");
+        option2.setAttribute("name", qNum + "-B"); 
+        option2.setAttribute("placeholder", "Option 2");
+        option2.setAttribute("oninput","auto_grow(this)");
+        option2.id = "option2-" + qNum;
+
+        let option3Label = document.createElement('label');
+        option3Label.setAttribute("for", "option3-" + qNum);
+        option3Label.innerHTML = "Option C";
+        option3Label.id = "label-option3-" + qNum;
+
+        let option3 = document.createElement("textarea");
+        option3.setAttribute("name", qNum + "-C"); 
+        option3.setAttribute("placeholder", "Option 3");
+        option3.setAttribute("oninput","auto_grow(this)");
+        option3.id = "option3-" + qNum;
+
+        let option4Label = document.createElement('label');
+        option4Label.setAttribute("for", "option4-" + qNum);
+        option4Label.innerHTML = "Option D";
+        option4Label.id = "label-option4-" + qNum;
+
+        let option4 = document.createElement("textarea");
+        option4.setAttribute("name", qNum + "-D"); 
+        option4.setAttribute("placeholder", "Option 4");
+        option4.setAttribute("oninput","auto_grow(this)");
+        option4.id = "option4-" + qNum;
+
+        let options = document.createElement('div');
+
+
+        //Answer options 
+
+        let answerLabel = document.createElement('label');
+        answerLabel.setAttribute("for", "answer-" + qNum);
+        answerLabel.innerHTML = "Answer ";
+        answerLabel.id = "label-answer-" + qNum;
+
+        let answer = document.createElement('select');
+        answer.setAttribute("name", "answer-" + qNum);
+        answer.id = "answer-" + qNum;
+
+        let answerOption1 = document.createElement('option');
+        answerOption1.setAttribute("value", "A");
+        answerOption1.innerHTML = "A";
+
+        let answerOption2 = document.createElement('option');
+        answerOption2.setAttribute("value", "B");
+        answerOption2.innerHTML = "B";
+
+        let answerOption3 = document.createElement('option');
+        answerOption3.setAttribute("value", "C");
+        answerOption3.innerHTML = "C";
+
+        let answerOption4 = document.createElement('option');
+        answerOption4.setAttribute("value", "D");
+        answerOption4.innerHTML = "D";
+
+        //Appending answer options to select tag
+
+        answer.appendChild(answerOption1);
+        answer.appendChild(answerOption2);
+        answer.appendChild(answerOption3);
+        answer.appendChild(answerOption4);
+
+        //Appending queston, option-container and answer-container to question wrapper
+
+        questionWrapper.appendChild(document.createElement('br'));
+        questionWrapper.appendChild(queLabel);
+        questionWrapper.appendChild(que);
+        questionWrapper.appendChild(options);  
+        questionWrapper.appendChild(answerLabel);
+        questionWrapper.appendChild(answer);      
+
+        options.appendChild(document.createElement('br'));
+        options.appendChild(option1Label);
+        options.appendChild(option1);
+        options.appendChild(document.createElement('br'));
+        options.appendChild(option2Label);
+        options.appendChild(option2);
+        options.appendChild(document.createElement('br'));
+        options.appendChild(option3Label);
+        options.appendChild(option3);
+        options.appendChild(document.createElement('br'));
+        options.appendChild(option4Label);
+        options.appendChild(option4);
+        options.appendChild(document.createElement('br'));
+        options.appendChild(document.createElement('br'));        
+    };
+    let changeName = (qid) => {
+        var i;
+        for (i = qid + 1; i < (qNum + 1); i++) {
+            let originalQuestionWrapper = document.getElementById('question-wrapper-' + i);
+
+            let originalQuestion = document.getElementById("question-" + i);
+            let originalQuestionLabel = document.getElementById("label-question-" + i);
+
+            let originalOption1 = document.getElementById("option1-" + i);
+            let originalOption1Label = document.getElementById("label-option1-" + i);
+
+            let originalOption2 = document.getElementById("option2-" + i);
+            let originalOption2Label = document.getElementById("label-option2-" + i);
+
+            let originalOption3 = document.getElementById("option3-" + i);
+            let originalOption3Label = document.getElementById("label-option3-" + i);
+
+            let originalOption4 = document.getElementById("option4-" + i);
+            let originalOption4Label = document.getElementById("label-option4-" + i);
+
+
+            let originalAnswer = document.getElementById("answer-" + i);
+            let originalAnswerLabel = document.getElementById("label-answer-" + i);
+
+            let newId = i - 1;
+
+            originalQuestionWrapper.id = 'question-wrapper-' + newId;
+
+            //Question
+            originalQuestion.name = "question-" + newId;
+            originalQuestion.placeholder = "Question " + newId;
+            originalQuestion.id = "question-" + newId;
+
+            originalQuestionLabel.id = "label-question-" + newId;
+            originalQuestionLabel.setAttribute("for", "question-" + newId);
+            originalQuestionLabel.innerHTML = "Question " + newId;
+
+            //Options
+            originalOption1Label.id = "label-option1-" + newId;
+            originalOption1Label.setAttribute("for", "option1-" + newId);
+
+            originalOption2Label.id = "label-option2-" + newId;
+            originalOption2Label.setAttribute("for", "option2-" + newId);
+
+            originalOption3Label.id = "label-option3-" + newId;
+            originalOption3Label.setAttribute("for", "option3-" + newId);
+
+            originalOption4Label.id = "label-option4-" + newId;
+            originalOption4Label.setAttribute("for", "option4-" + newId);
+
+            originalOption1.name = newId + "-A"
+            originalOption2.name = newId + "-B"
+            originalOption3.name = newId + "-C"
+            originalOption4.name = newId + "-D"
+
+            originalOption1.id = "option1-" + newId;
+            originalOption2.id = "option2-" + newId;
+            originalOption3.id = "option3-" + newId;
+            originalOption4.id = "option4-" + newId;
+
+            originalAnswer.id = "answer-" + newId;
+            originalAnswer.name = "answer-" + newId;
+
+            //Answer
+            originalAnswerLabel.id = "label-answer-" + newId;
+            originalAnswerLabel.setAttribute("for", "answer-" + newId);
+        };
+    };
+    let removeQuestion = (rmvBtn) => {
+        let questionWrapper = rmvBtn.parentElement;
+        let qid = questionWrapper.id
+        qid = qid.match(/\d/g);
+        qid = qid.join("");
+        qid = parseInt(qid)
+        changeName(qid);
+        questionWrapper.remove();
+        qNum --;
+    }
+    
+    createQuestion();
+</script>
+{% endblock %}

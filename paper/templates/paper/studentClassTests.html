@@ -1,0 +1,17 @@
+{% extends 'paper/main.html' %}
+{% load static %}
+
+{% block activeClassroom %}active{% endblock %}
+
+{% block classTests %}
+<link rel="stylesheet" href="{% static '/css/student.css' %}" />
+<div class="test-list">
+    {% for i in tests|dictsortreversed:"date_created" %}
+        <a href="/student/{{studentId}}/test/{{i.id}}"><div class="test-item">{{i.topic}}</div></a>
+    {% endfor %}
+</div>
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit" name="leaveClassroom">Leave Classroom</button>
+</form>
+{% endblock %}

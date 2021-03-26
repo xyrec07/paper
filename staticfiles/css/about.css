@@ -1,0 +1,19 @@
+.content div {
+  width: 100%;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.content div .logo {
+  padding: 1rem;
+  font-size: 10rem;
+  font-weight: bold;
+  font-family: 'Syne Mono', monospace;
+  text-decoration: none;
+  color: #333333;
+}
+
+.content div p {
+  font-size: 3rem;
+}
+/*# sourceMappingURL=about.css.map */

@@ -1,0 +1,193 @@
+{% block activeClassroom %}active{% endblock %}
+{% block content %}
+<h1>Create Test</h1>
+<form action="" method="post" id="form">
+    {% csrf_token %}
+    <input type="text" name="topic" placeholder="Topic" value="{{oldTopic}}(edited)">
+    <br><br>
+    <label for="">Select classes-</label>
+    <br>
+    {% for i in teacher.classes.all %}
+    <input type="checkbox" id="class-{{forloop.counter}}" name="classes" value="{{i.id}}">
+    <label for="class-{{forloop.counter}}">{{i}}</label>
+    <br>
+    {% endfor %}
+    <br><br>
+    <input type="number" name="correct" placeholder="correct" value="{{oldCorrect}}">
+    <input type="number" name="wrong" placeholder="wrong" value="{{oldWrong}}">
+    <br>
+    <div id="questions">
+        {% for i in oldQuestions %}
+        <div id="question-wrapper-{{i.qid}}">
+            <br>
+            <input type="text" name="question-1" placeholder="Question {{i.qid}}" id="question-{{i.qid}}" value="{{i.question}}">
+            <div>
+                <input type="text" name="{{i.qid}}-A" placeholder="Option 1" id="option1-{{i.qid}}" value="{{i.options.A}}">
+                <input type="text" name="{{i.qid}}-B" placeholder="Option 2" id="option2-{{i.qid}}" value="{{i.options.B}}">
+                <input type="text" name="{{i.qid}}-C" placeholder="Option 3" id="option3-{{i.qid}}" value="{{i.options.C}}">
+                <input type="text" name="{{i.qid}}-D" placeholder="Option 4" id="option4-{{i.qid}}" value="{{i.options.D}}">
+            </div>
+            <select name="answer-{{i.qid}}" id="answer-{{i.qid}}">
+                {% if i.answer == 'A' %}
+                <option value="A" selected>A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                {% elif i.answer == 'B' %}
+                <option value="A">A</option>
+                <option value="B" selected>B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                {% elif i.answer == 'C' %}
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C" selected>C</option>
+                <option value="D">D</option>
+                {% elif i.answer == 'D' %}
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D" selected>D</option>
+                {% else %}
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                {% endif %}
+            </select>
+            <button id="rmvBtn{{i.qid}}" onclick="removeQuestion(this); return false;">-</button>
+        </div>
+        {% endfor %}
+    </div>
+    <button onclick="addQuestion(); return false;">Add Question</button>
+    <input type="submit" value="submit">
+</form>
+<script>
+    var qNum;
+    qNum = document.getElementById("questions").childElementCount;
+
+    let addQuestion = () => {
+        qNum ++;
+        let questions = document.getElementById("questions");
+
+        let questionWrapper = document.createElement("div");
+        questionWrapper.id= "question-wrapper-" + qNum;
+
+        questions.appendChild(questionWrapper);
+
+        let que = document.createElement("input");
+        que.setAttribute("type", "text"); 
+        que.setAttribute("name", "question-" + qNum); 
+        que.setAttribute("placeholder", "Question " + qNum);
+        que.id = "question-" + qNum;
+
+        let option1 = document.createElement("input");
+        option1.setAttribute("type", "text"); 
+        option1.setAttribute("name", qNum + "-A"); 
+        option1.setAttribute("placeholder", "Option 1");
+        option1.id = "option1-" + qNum;
+
+        let option2 = document.createElement("input");
+        option2.setAttribute("type", "text"); 
+        option2.setAttribute("name", qNum + "-B"); 
+        option2.setAttribute("placeholder", "Option 2");
+        option2.id = "option2-" + qNum;
+
+        let option3 = document.createElement("input");
+        option3.setAttribute("type", "text"); 
+        option3.setAttribute("name", qNum + "-C"); 
+        option3.setAttribute("placeholder", "Option 3");
+        option3.id = "option3-" + qNum;
+
+        let option4 = document.createElement("input");
+        option4.setAttribute("type", "text"); 
+        option4.setAttribute("name", qNum + "-D"); 
+        option4.setAttribute("placeholder", "Option 4");
+        option4.id = "option4-" + qNum;
+
+        let options = document.createElement('div');
+
+        let answer = document.createElement('select');
+        answer.setAttribute("name", "answer-" + qNum);
+        answer.id = "answer-" + qNum;
+
+        let answerOption1 = document.createElement('option');
+        answerOption1.setAttribute("value", "A");
+        answerOption1.innerHTML = "A"
+
+        let answerOption2 = document.createElement('option');
+        answerOption2.setAttribute("value", "B");
+        answerOption2.innerHTML = "B"
+
+        let answerOption3 = document.createElement('option');
+        answerOption3.setAttribute("value", "C");
+        answerOption3.innerHTML = "C"
+
+        let answerOption4 = document.createElement('option');
+        answerOption4.setAttribute("value", "D");
+        answerOption4.innerHTML = "D"
+
+        answer.appendChild(answerOption1);
+        answer.appendChild(answerOption2);
+        answer.appendChild(answerOption3);
+        answer.appendChild(answerOption4);
+
+        questionWrapper.appendChild(que);
+        questionWrapper.appendChild(options);        
+
+        options.appendChild(option1);
+        options.appendChild(option2);
+        options.appendChild(option3);
+        options.appendChild(option4);
+
+        questionWrapper.appendChild(answer);
+
+        let removeBtn = document.createElement("button");
+        removeBtn.innerHTML = "-"
+        removeBtn.id = "rmvBtn" + qNum
+        questionWrapper.appendChild(removeBtn);
+        removeBtn.setAttribute("onclick","removeQuestion(this); return false;");
+    };
+    let changeName = (qid) => {
+        var i;
+        for (i = qid + 1; i < (qNum + 1); i++) {
+            let originalQuestionWrapper = document.getElementById('question-wrapper-' + i);
+            let originalQuestion = document.getElementById("question-" + i);
+            let originalOption1 = document.getElementById("option1-" + i);
+            let originalOption2 = document.getElementById("option2-" + i);
+            let originalOption3 = document.getElementById("option3-" + i);
+            let originalOption4 = document.getElementById("option4-" + i);
+            let originalAnswer = document.getElementById("answer-" + i);
+
+            let newId = i - 1;
+
+            originalQuestion.name = "question-" + newId;
+            originalQuestion.placeholder = "Question " + newId;
+            originalOption1.name = newId + "-A"
+            originalOption2.name = newId + "-B"
+            originalOption3.name = newId + "-C"
+            originalOption4.name = newId + "-D"
+
+            originalQuestionWrapper.id = 'question-wrapper-' + newId;
+            originalQuestion.id = "question-" + newId;
+            originalOption1.id = "option1-" + newId;
+            originalOption2.id = "option2-" + newId;
+            originalOption3.id = "option3-" + newId;
+            originalOption4.id = "option4-" + newId;
+
+            originalAnswer.id = "answer-" + newId;
+            originalAnswer.name = "answer-" + newId;
+        };
+    };
+    let removeQuestion = (rmvBtn) => {
+        let questionWrapper = rmvBtn.parentElement;
+        let qid = questionWrapper.id
+        qid = qid.match(/\d/g);
+        qid = qid.join("");
+        qid = parseInt(qid)
+        changeName(qid);
+        questionWrapper.remove();
+        qNum --;
+    }
+</script>
+{% endblock %}

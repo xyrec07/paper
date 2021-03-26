@@ -1,0 +1,117 @@
+.content{
+    background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+    h1 {
+    	font-weight: bold;
+    	margin: 0;
+    }
+
+    p {
+    	font-size: 14px;
+    }
+
+    span {
+    	font-size: 12px;
+    }
+
+    form {
+    	background-color: #FFFFFF;
+    	display: flex;
+    	align-items: center;
+    	justify-content: center;
+    	flex-direction: column;
+    	padding: 0 50px;
+    	height: 100%;
+    	text-align: center;
+    }
+
+    input {
+    	background-color: #eee;
+    	border: none;
+    	padding: 12px 15px;
+    	margin: 8px 0;
+        width: 100%;
+    }
+
+    .user-id{
+        letter-spacing: 12px;
+        font-weight: bold;
+    }
+    .user-id:placeholder-shown {
+        letter-spacing: 1px;
+        font-weight: normal;
+     }
+
+    .home-container {
+    	background-color: #fff;
+    	border-radius: 10px;
+    	position: relative;
+    	overflow: hidden;
+    	width: 768px;
+    	max-width: 100%;
+    	min-height: 480px;
+		display: flex;
+		flex-direction: row;
+    }
+    .home-container-logged{
+		font-size: 2.5rem;
+		span{
+			font-size: 5rem;
+			color: #f64b2b;
+		}
+		p{
+			font-size: 2rem;
+		}
+        .uid{
+			width: 12ch;
+			border-radius: 5px;
+			font-size: 2.5rem;
+			margin-left: 30%;
+			letter-spacing: 1ch;
+			font-weight: bold;
+			border: solid black 2px;
+		}
+		.button{
+			font-size: 2rem;
+			margin-left: 27%;
+			border-radius: 5rem;
+
+		}
+    }
+
+    .form-container {
+    	height: 100%;
+    	transition: all 0.6s ease-in-out;
+    }
+	.form-logo{
+		width: 60%;
+		height: 100%;
+		background: rgb(255,252,235);
+		background: linear-gradient(90deg, rgba(255,252,235,1) 0%, rgba(255,175,0,1) 0%, rgba(255,119,0,1) 100%);
+		position: relative;
+		.logo{
+			padding: 1rem;
+			font-size: 10rem;
+			position: absolute;
+			top: 30%;
+			width: 100%;
+			text-align: center;
+			font-family: 'Fredoka One', cursive;
+			text-decoration: none;
+			color: white;
+		}
+	}
+
+    .sign-up-container {
+    	width: 40%;
+    }
+
+	.log-in-container {
+    	width: 40%
+    }
+}
+

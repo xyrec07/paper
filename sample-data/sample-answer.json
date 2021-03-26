@@ -1,0 +1,20 @@
+{
+    "answers": [
+        {
+            "qid":1,
+            "optionSelected": "A",
+            "status":"Correct"
+        },
+        {
+            "qid":2,
+            "optionSelected": "C",
+            "status":"Wrong"
+        },
+        {
+            "qid":3,
+            "optionsSelected": "A",
+            "status":"Correct"
+        }
+],
+    "marks": 12
+}

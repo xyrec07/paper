@@ -1,0 +1,135 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.left-container {
+  width: 20%;
+  background-color: #d2d2cb;
+}
+
+.left-container .detail {
+  padding: 2rem;
+  border-bottom: solid 0.2rem black;
+}
+
+.left-container .topic {
+  padding-top: 4rem;
+  font-size: 2.5rem;
+}
+
+.left-container .mk-scheme {
+  padding: 0.5rem 0.5rem 0 2rem;
+}
+
+.left-container .score {
+  padding: 4rem 2rem 2rem 2rem;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.right-container {
+  width: 80%;
+  min-height: calc(100vh - 4rem);
+  padding-top: 2rem;
+  background-color: #faf8ef;
+}
+
+form {
+  margin: auto;
+  max-width: 50%;
+}
+
+.question-container {
+  font-size: 2rem;
+  padding: 2rem;
+  border-bottom: solid 0.2rem #9c9a9a;
+  padding-bottom: 4rem;
+  padding-top: 4rem;
+}
+
+.question {
+  padding: 1rem;
+}
+
+.option-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+
+.option {
+  padding: 1rem;
+  border: solid 0.1rem #757575;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.q-no {
+  color: #333333;
+  font-size: 1.8rem;
+}
+
+.option-name {
+  color: #4b4b4b;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.option-container input[type="radio"] {
+  display: none;
+}
+
+.option-selected {
+  background-color: #aaaaaa;
+}
+
+.answer-selected {
+  background-color: green;
+}
+
+.correct-q {
+  background-color: green;
+}
+
+.incorrect-q {
+  background-color: red;
+}
+
+.unanswered-q {
+  background-color: #aaaaaa;
+}
+
+.info {
+  font-size: 2rem;
+  font-style: italic;
+  border-bottom: solid 0.2rem #9c9a9a;
+  margin-bottom: 2rem;
+}
+
+.info span {
+  font-size: 3.5rem;
+  font-style: normal;
+}
+
+.info .green-block {
+  color: green;
+}
+
+.info .red-block {
+  color: red;
+}
+
+.info .gray-block {
+  color: #aaaaaa;
+}
+/*# sourceMappingURL=studentTestResponse.css.map */

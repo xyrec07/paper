@@ -1,0 +1,61 @@
+{% extends 'paper/main.html' %}
+{% load static %}
+
+{% block activeClassroom %}active{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/response.css' %}" />
+<div id="mssg">It seems there is no respone.</div>
+<div id="table-wrapper">
+    <table id="response-table">
+        <caption>Result: {{topic}}({{currentClass.class_name}})</caption>
+        <tr>
+            <th>S. No.</th>
+            <th>Student Id</th>
+            <th>Name</th>
+            <th>Marks</th>
+        </tr>
+        {% for i in responseList %}
+            {% if i.id %}
+                <tr>
+                    <td>{{i.rank}}</td>
+                    <td>{{i.id}}</td>
+                    <td>{{i.student}}</td>
+                    <td>{{i.score}}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+    <div class="btn-wrapper">
+        <a href="/classroom/{{currentClass.id}}/response/{{testId}}/download">
+            <button class="download-btn"><i class="fa fa-download"></i> Download</button>
+        </a>
+    </div>
+</div>
+<div class="graphs">
+    <div>
+        <h1>Test Info</h1>
+        <div class="graphs-1">
+            {{ graphs.attemptedGraph |safe }}
+            {{ graphs.boxPlot |safe }}
+        </div>
+    </div>
+    <div class="graphs-2">
+        <h1>Question Wise Response</h1>
+        {{ graphs.questionWiseBarGraph |safe }}
+    </div>
+</div>
+<script>
+    let allTableData = document.getElementById("response-table");
+    let x = allTableData.rows.length;
+    console.log(x);
+    let mssg = document.getElementById("mssg");
+
+    if(x == 1) {
+        document.getElementById("table-wrapper").className = "hide";
+    } else {
+        mssg.style.display = "none";
+    }
+</script>
+{% endblock %}

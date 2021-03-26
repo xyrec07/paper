@@ -1,0 +1,96 @@
+.class-header{
+    width: 100%;
+    padding: 2rem;
+    background-color: #b9b9b2;
+    box-sizing: border-box;
+    position: relative;
+    .class-name{
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    .class-code{
+        font-size: 2rem;
+        margin-left: 2rem;
+    }
+    .leave-btn{
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: absolute;
+        right:2rem;
+        padding: 0.7rem;
+        color: white;
+        background-color: red;
+        border: none;
+        border-radius: 5px;
+     }
+     .leave-btn:hover{
+        background-color: #ca0000;
+     }
+    
+}
+
+.container{
+    display: flex;
+    min-height: calc(100vh - 12.5rem);
+    background-color: red;
+}
+.left-container{
+    width: 20%;
+    background-color: #d2d2cb;
+    padding: 2rem;
+    li{
+        padding: 2rem;
+        font-size: 2rem;
+        font-weight: bold;
+        padding-bottom: 1rem;
+        border-bottom: solid 0.2rem black;
+    }
+    .topic{
+        padding-top: 4rem;
+        font-size: 2.5rem;
+    }
+}
+
+.right-container{
+    width: 80%;
+    padding: 2rem;
+    background-color: #faf8ef; 
+}
+
+.student-list{
+    padding: 0;
+    ul{
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        width: 16%;
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+        padding: 1.5rem;
+        position: relative;
+        display: inline-block;
+        border: solid 0.2rem rgb(78, 78, 78);
+        background-color: #d2d2cb;
+        border-radius: 1rem;
+        text-align: center;
+        .fa-times{
+            font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 2rem;
+            position: absolute;
+            right: 0.5rem; 
+            border: none;
+            color: rgb(78, 78, 78);
+            background-color: #d2d2cb;
+        }
+        .fa-times:hover{
+            transform: scale(1.2);
+        }
+    }
+}
+
+.hide-rmv{
+    li > input{
+        display: none;
+    }
+}

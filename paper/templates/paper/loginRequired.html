@@ -1,0 +1,24 @@
+{% extends 'paper/main.html' %}
+
+{% block activeClassroom %}active{% endblock %}
+
+{% block content %}
+<style>
+.login-required{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+p{
+    width: 100%;
+    font-size: 3rem;
+    text-align: center;
+    position: absolute;
+    top:40%;
+}
+
+</style>
+<div class="login-required">
+    <p>Login to view classrooms.</p>
+</div>
+{% endblock %}

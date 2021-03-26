@@ -1,0 +1,18 @@
+{% extends 'paper/main.html' %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+{% block activeAbout %}active{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/about.css' %}" />
+<div>
+    <a class="logo" href="/">Paper</a>
+    <p>This website is made for CBSE Informatics Practices project by-</p>
+    <ul>
+        <li>Harshit Chauhan</li>
+        <li>XII Non Medical</li>
+        <li>(Dayanand Public School, Shimla)</li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+.class-header {
+  width: 100%;
+  padding: 2rem;
+  background-color: #b9b9b2;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+}
+
+.class-header .class-name {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.class-header .class-code {
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+
+.class-header .leave-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  right: 2rem;
+  padding: 0.7rem;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+}
+
+.class-header .leave-btn:hover {
+  background-color: #ca0000;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: calc(100vh - 12.5rem);
+  background-color: red;
+}
+
+.left-container {
+  width: 20%;
+  background-color: #d2d2cb;
+  padding: 2rem;
+}
+
+.left-container li {
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  border-bottom: solid 0.2rem black;
+}
+
+.left-container .topic {
+  padding-top: 4rem;
+  font-size: 2.5rem;
+}
+
+.right-container {
+  width: 80%;
+  padding: 2rem;
+  background-color: #faf8ef;
+}
+
+.student-list {
+  padding: 0;
+}
+
+.student-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+.student-list li {
+  width: 16%;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+  position: relative;
+  display: inline-block;
+  border: solid 0.2rem #4e4e4e;
+  background-color: #d2d2cb;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.student-list li .fa-times {
+  font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2rem;
+  position: absolute;
+  right: 0.5rem;
+  border: none;
+  color: #4e4e4e;
+  background-color: #d2d2cb;
+}
+
+.student-list li .fa-times:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.hide-rmv li > input {
+  display: none;
+}
+/*# sourceMappingURL=classroom.css.map */
