@@ -1,4 +1,5 @@
 # Paper
-## Website to conduct online tests.
+### Website to create classes and conduct online tests.
 
-## (IP project website)
+https://paper-web-django.herokuapp.com/
+
